@@ -1,0 +1,97 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+object <|-- MultiSet
+class object {
+__str__()
+__repre__()
+__del__()
+__eq__(any)
+__ne__(any)
+__ly__(any)
+__le__(any)
+__gt__(any)
+__ge__(any)
+__hash__()
+__len__()
+__getitem__(any)
+___setitem__(any)
+__delitem__(any)
+__iter__()
+__next__()
+__contains__(item)
+}
+
+abstract MultiSet {
+add(any)
+remove(any)
+contains(any)
+is_empty()
+count(any)
+size()
+
+}
+
+object <|-- Tree
+class Tree {
+    _root: any
+    _subtree: list[Tree]
+
+    is_empty()
+    __len__()
+    __str__()
+    __eq__()
+    __contains__(any)
+
+}
+MultiSet <|-- TreeMultiSet
+TreeMultiSet *-- Tree
+class TreeMultiSet {
+_tree: Tree
+add(any)
+remove(any)
+contains(any)
+is_empty(any)
+count(any)
+size(any)
+}
+
+MultiSet <|-- ArrayListMultiSet
+class ArrayListMultiSet {
+_list: list
+add(any)
+remove(any)
+contains(any)
+is_empty(any)
+count(any)
+size(any)
+}
+
+MultiSet <|-- LinkedListMultiSet
+LinkedListMultiSet *-- _Node
+class LinkedListMultiSet {
+_front: _Node | None
+_size: int
+
+add(any)
+remove(any)
+contains(any)
+is_empty(any)
+count(any)
+size(any)
+}
+
+object <|-- _Node
+class _Node {
+item: Any
+next: _Node | None
+}
+
+TreeMultiSet <|.. Main: creates
+ArrayListMultiSet <|.. Main: creates
+LinkedListMultiSet <|.. Main: creates
+object <|-- Main
+class Main {
+profileMultiSet(MultiSet, int)
+}
+@enduml
