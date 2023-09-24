@@ -1,97 +1,72 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-object <|-- MultiSet
-class object {
-__str__()
-__repre__()
-__del__()
-__eq__(any)
-__ne__(any)
-__ly__(any)
-__le__(any)
-__gt__(any)
-__ge__(any)
-__hash__()
-__len__()
-__getitem__(any)
-___setitem__(any)
-__delitem__(any)
-__iter__()
-__next__()
-__contains__(item)
-}
+
 
 abstract MultiSet {
-add(any)
-remove(any)
-contains(any)
-is_empty()
-count(any)
-size()
++add(Any): bool
++remove(Any): None
++contains(Any): bool
++is_empty(): bool
++count(Any): int
++size(): int
 
 }
 
-object <|-- Tree
 class Tree {
-    _root: any
-    _subtree: list[Tree]
+    -_root: Any
+    -_subtree: list[Tree]
 
-    is_empty()
-    __len__()
-    __str__()
-    __eq__()
-    __contains__(any)
+    +is_empty(): bool
+    +__len__(): int
+    +count(Any): int
+    +__contains__(Any): bool
+    +delete_item(Any): bool
+    +insert(Any): None
 
 }
+
 MultiSet <|-- TreeMultiSet
 TreeMultiSet *-- Tree
 class TreeMultiSet {
-_tree: Tree
-add(any)
-remove(any)
-contains(any)
-is_empty(any)
-count(any)
-size(any)
+-_tree: Tree
++add(Any): bool
++remove(Any): None
++contains(Any): bool
++is_empty(): bool
++count(Any): int
++size(): int
 }
 
 MultiSet <|-- ArrayListMultiSet
 class ArrayListMultiSet {
-_list: list
-add(any)
-remove(any)
-contains(any)
-is_empty(any)
-count(any)
-size(any)
+-_list: list
++add(Any): bool
++remove(Any): None
++contains(Any): bool
++is_empty(): bool
++count(Any): int
++size(): int
 }
 
 MultiSet <|-- LinkedListMultiSet
 LinkedListMultiSet *-- _Node
 class LinkedListMultiSet {
-_front: _Node | None
-_size: int
+-_front: _Node | None
+-_size: int
 
-add(any)
-remove(any)
-contains(any)
-is_empty(any)
-count(any)
-size(any)
++add(Any): bool
++remove(Any): None
++contains(Any): bool
++is_empty(): bool
++count(Any): int
++size(): int
 }
 
-object <|-- _Node
-class _Node {
+
+class _Node <<private>>{
 item: Any
 next: _Node | None
 }
 
-TreeMultiSet <|.. Main: creates
-ArrayListMultiSet <|.. Main: creates
-LinkedListMultiSet <|.. Main: creates
-object <|-- Main
-class Main {
-profileMultiSet(MultiSet, int)
-}
 @enduml
