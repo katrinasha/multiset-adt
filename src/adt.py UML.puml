@@ -22,6 +22,7 @@ class Tree {
     +count(Any): int
     +__contains__(Any): bool
     +delete_item(Any): bool
+    -_delete_root(): None
     +insert(Any): None
 
 }
@@ -65,8 +66,8 @@ class LinkedListMultiSet {
 
 
 class _Node <<private>>{
-item: Any
-next: _Node | None
++item: Any
++next: _Node | None
 }
 
 @enduml
